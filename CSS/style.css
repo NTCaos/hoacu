@@ -1,0 +1,92 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.8;
+    color: #444;
+}
+/* Banner */
+.jumbotron {
+    background-color: #f4511e;
+    color: #fff;
+    padding: 100px 25px;
+    margin-bottom: 0;
+}
+.jumbotron input[type="text"] {
+    max-width: 400px;
+}
+/* Typography & Container spacing */
+h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #303030;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.container-fluid {
+    padding: 60px 50px;
+}
+.bg-grey {
+    background-color: #f6f6f6;
+}
+/* Custom Icons */
+.logo {
+    color: #f4511e;
+    font-size: 200px;
+}
+.logo-small {
+    color: #f4511e;
+    font-size: 50px;
+}
+/* Navbar */
+.navbar {
+    margin-bottom: 0;
+    background-color: #f4511e;
+    z-index: 9999;
+    border: 0;
+    border-radius: 0;
+}
+.navbar .navbar-brand, .navbar .navbar-nav li a {
+    color: #fff !important;
+}
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+}
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+/* Panels (Pricing) */
+.panel {
+    border: 1px solid #f4511e; 
+    transition: box-shadow 0.5s;
+}
+.panel:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+.panel-footer .btn:hover {
+    border: 1px solid #f4511e;
+    background-color: #fff !important;
+    color: #f4511e;
+}
+.panel-heading {
+    color: #fff !important;
+    background-color: #f4511e !important;
+    padding: 25px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.panel-footer {
+    background-color: white !important;
+}
+.panel-footer h3 {
+    font-size: 32px;
+}
+/* Carousel Styling */
+.carousel-inner h4 {
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+}
