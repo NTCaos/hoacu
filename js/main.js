@@ -1,31 +1,5 @@
 // ==========================================
-// KHỞI TẠO DỮ LIỆU MẪU (DATABASE SEEDING)
-// Chạy ngay khi load trang để đảm bảo luôn có sẵn tài khoản mẫu để test
-// ==========================================
-(function initDatabase() {
-    var dbUsers = JSON.parse(localStorage.getItem('DATABASE_USERS'));
-    if (!dbUsers || dbUsers.length === 0) {
-        var sampleUsers = [
-            {
-                username: "nguyenvana",
-                email: "vana@gmail.com",
-                password: "123456",
-                createdAt: new Date().toISOString()
-            },
-            {
-                username: "hoasiamator",
-                email: "art@gmail.com",
-                password: "123456",
-                createdAt: new Date().toISOString()
-            }
-        ];
-        localStorage.setItem('DATABASE_USERS', JSON.stringify(sampleUsers));
-        console.log("-- Khởi tạo Database Local: Đã nạp thành công tài khoản mẫu 'nguyenvana' / '123456'");
-    }
-})();
-
-// ==========================================
-// CHỨC NĂNG GIỎ HÀNG (QUẢN LÝ BIẾN VÀ BADGE)
+// 1. QUẢN LÝ GIỎ HÀNG (ĐỒNG BỘ LOCALSTORAGE)
 // ==========================================
 var cartCount = parseInt(localStorage.getItem('CART_COUNT')) || 0;
 
@@ -38,175 +12,136 @@ function updateCartBadge() {
 
 function addToCart() {
     cartCount++;
-    localStorage.setItem('CART_COUNT', cartCount); // Lưu lại số lượng vào trình duyệt
+    localStorage.setItem('CART_COUNT', cartCount);
     updateCartBadge();
     alert('Đã thêm sản phẩm vào giỏ hàng thành công!');
 }
 
-// Tự động cập nhật số giỏ hàng mỗi khi load bất kỳ trang nào lên
-$(document).ready(function() {
-    updateCartBadge();
-});
-
 // ==========================================
-// TỰ ĐỘNG TÍCH CHỌN COMBO KHI MỞ MODAL ĐẶT HÀNG
+// 2. DỮ LIỆU 20 SẢN PHẨM CHO TỪNG TRANG
 // ==========================================
-$(document).ready(function() {
-    $('.btn-order').on('click', function() {
-        var serviceType = $(this).attr('data-service'); // Lấy loại combo từ nút bấm (basic, pro, master)
-        
-        // Bỏ tích tất cả các checkbox cũ trước
-        $('input[name="serviceCb"]').prop('checked', false);
-        
-        // Tự động tích vào ô có id tương ứng (cb-basic, cb-pro, cb-master)
-        $('#cb-' + serviceType).prop('checked', true);
-    });
-});
+var dbProducts = {
+    "co": [
+        { id: 1, name: "Bộ Cọ Vẽ Art Secret 10 Cây", price: 185000, type: "co-tia", tag: "-24%", img: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=300" },
+        { id: 2, name: "Cọ Flat Đầu Bằng Bay Vẽ", price: 45000, type: "co-flat", tag: "-10%", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=300" },
+        { id: 3, name: "Cọ Tỉa Đi Nét Lông Chồn", price: 95000, type: "co-tia", tag: "HOT", img: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=300" },
+        { id: 4, name: "Cọ Round Lông Sóc Thân Gỗ", price: 120000, type: "co-ngam", tag: "", img: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=300" },
+        { id: 5, name: "Cọ Quạt Tạo Vân Cây Lá", price: 35000, type: "co-flat", tag: "NEW", img: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=300" },
+        { id: 6, name: "Cọ Ngậm Nước Thân Nhựa", price: 75000, type: "co-ngam", tag: "", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=300" }
+    ],
+    "mau": [
+        { id: 1, name: "Màu Nước Holbein Artist 12 Màu", price: 650000, type: "mau-nuoc", tag: "-15%", img: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=300" },
+        { id: 2, name: "Màu Nước Dạng Bánh Paul Rubens", price: 320000, type: "mau-nuoc", tag: "SALE", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=300" },
+        { id: 3, name: "Bộ Màu Acrylic Marie's 24 Tuýp", price: 145000, type: "mau-acrylic", tag: "", img: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=300" },
+        { id: 4, name: "Màu Thạch Gouache Himi 24 Màu", price: 195000, type: "mau-poster", tag: "HOT", img: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=300" },
+        { id: 5, name: "Sơn Dầu Pebeo XL Studio", price: 280000, type: "mau-acrylic", tag: "NEW", img: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=300" },
+        { id: 6, name: "Hộp Chì Khô Faber Castell 36 Màu", price: 210000, type: "mau-chi", tag: "", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=300" }
+    ],
+    "giay": [
+        { id: 1, name: "Giấy Màu Nước Arches 300gsm", price: 240000, type: "giay-300", tag: "BEST", img: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=300" },
+        { id: 2, name: "Sổ Vẽ Nabii Aqua Fat 300gsm", price: 95000, type: "giay-300", tag: "-10%", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=300" },
+        { id: 3, name: "Sổ Sketch Potentate A5", price: 65000, type: "giay-200", tag: "", img: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=300" },
+        { id: 4, name: "Bản Vẽ Giấy Canson Pháp", price: 115000, type: "giay-200", tag: "", img: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=300" },
+        { id: 5, name: "Sổ Klong Vẽ Marker A4", price: 45000, type: "giay-100", tag: "HOT", img: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=300" },
+        { id: 6, name: "Tập Giấy Baohong 100% Cotton", price: 160000, type: "giay-300", tag: "", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=300" }
+    ]
+};
 
-// ==========================================
-// CHỨC NĂNG: ĐĂNG KÝ CÓ LƯU TRỮ VÀO "DATABASE LOCAL"
-// ==========================================
-$('#registerForm').on('submit', function(e) {
-    e.preventDefault();
-    var isValid = true;
-
-    var username = $('#regUser').val().trim();
-    var email = $('#regEmail').val().trim();
-    var password = $('#regPass').val();
-    var confirmPassword = $('#regConfirmPass').val();
-
-    // 1. Kiểm tra tài khoản (User)
-    if(username.length < 5) {
-        $('#errRegUser').text("Tên đăng nhập bắt buộc phải từ 5 ký tự trở lên!");
-        isValid = false;
-    } else {
-        $('#errRegUser').text("");
+// Hàm tự tạo ra danh sách 20 sản phẩm từ mảng gốc
+function generate20Products(type) {
+    var original = dbProducts[type];
+    var list = [];
+    for (var i = 0; i < 20; i++) {
+        var baseItem = original[i % original.length];
+        // Tạo biến thể nhỏ về tên và giá để trông giống thật
+        var priceOffset = (i % 3 === 0) ? 10000 : (i % 3 === 1 ? -5000 : 0);
+        list.push({
+            id: i + 1,
+            name: baseItem.name + " (Series " + (i + 1) + ")",
+            price: baseItem.price + priceOffset,
+            type: baseItem.type,
+            tag: i % 7 === 0 ? "SALE" : baseItem.tag,
+            img: baseItem.img
+        });
     }
-
-    // 2. Kiểm tra Email bằng Regex
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(email === "") {
-        $('#errRegEmail').text("Vui lòng không để trống ô Email!");
-        isValid = false;
-    } else if(!emailRegex.test(email)) {
-        $('#errRegEmail').text("Định dạng Email không hợp lệ (Ví dụ đúng: artdoor@gmail.com)!");
-        isValid = false;
-    } else {
-        $('#errRegEmail').text("");
-    }
-
-    // 3. Kiểm tra Mật khẩu
-    if(password.length < 6) {
-        $('#errRegPass').text("Mật khẩu bảo mật phải có độ dài ít nhất là 6 ký tự!");
-        isValid = false;
-    } else {
-        $('#errRegPass').text("");
-    }
-
-    // 4. Kiểm tra Mật khẩu nhập lại
-    if(confirmPassword !== password || confirmPassword === "") {
-        $('#errRegConfirmPass').text("Xác nhận mật khẩu chưa khớp hoàn toàn với mật khẩu đã nhập ở trên!");
-        isValid = false;
-    } else {
-        $('#errRegConfirmPass').text("");
-    }
-
-    // 5. Kiểm tra điều khoản (Nếu form đăng ký của bạn có checkbox này)
-    if($('#regTerm').length > 0 && !$('#regTerm').is(':checked')) {
-        $('#errRegTerm').text("Bạn phải tích chọn đồng ý với điều khoản dịch vụ để tiếp tục!");
-        isValid = false;
-    } else {
-        $('#errRegTerm').text("");
-    }
-
-    // NẾU FORM HỢP LỆ -> TIẾN HÀNH LƯU VÀO DATABASE GIẢ LẬP
-    if(isValid) {
-        var dbUsers = JSON.parse(localStorage.getItem('DATABASE_USERS')) || [];
-
-        // Kiểm tra xem trùng tên tài khoản không
-        var isExist = dbUsers.some(user => user.username === username);
-        if(isExist) {
-            $('#errRegUser').text("Tên tài khoản này đã có người sử dụng trong Database!");
-            return;
-        }
-
-        // Tạo cấu trúc một bản ghi (Record) dữ liệu mới
-        var newRecord = {
-            username: username,
-            email: email,
-            password: password,
-            createdAt: new Date().toISOString()
-        };
-
-        dbUsers.push(newRecord);
-        localStorage.setItem('DATABASE_USERS', JSON.stringify(dbUsers));
-
-        //-- PRETTIER-SQL-FORMAT-DEMO
-        //   INSERT INTO Users (username, email, password) 
-        //   VALUES (username, email, password);
-
-        alert("Đăng ký thành công! Dữ liệu tài khoản đã được nạp vào hệ thống.");
-        window.location.href = "index.html"; 
-    }
-});
-
-// ==========================================
-// CHỨC NĂNG: ĐĂNG NHẬP ĐỐI CHIẾU DATABASE VÀ CẬP NHẬT TRẠNG THÁI
-// ==========================================
-$('#loginForm').on('submit', function(e) {
-    e.preventDefault();
-    var userLogin = $('#loginUser').val().trim();
-    var passLogin = $('#loginPass').val();
-
-    var dbUsers = JSON.parse(localStorage.getItem('DATABASE_USERS')) || [];
-    var accountFound = dbUsers.find(user => user.username === userLogin && user.password === passLogin);
-
-    console.log(`-- Executing query: SELECT * FROM Users WHERE username = '${userLogin}'`);
-
-    if (userLogin === "admin" && passLogin === "123456") {
-        alert("Đăng nhập quyền Quản Trị Viên hệ thống!");
-        localStorage.setItem('CURRENT_USER', 'admin'); // Lưu trạng thái đăng nhập admin
-        checkLoginStatus(); // Cập nhật lại thanh menu ngay lập tức
-        $('#loginModal').modal('hide');
-    } else if (accountFound) {
-        alert("Đăng nhập thành công! Chào mừng thành viên: " + accountFound.username);
-        localStorage.setItem('CURRENT_USER', accountFound.username); // Lưu trạng thái đăng nhập user
-        checkLoginStatus(); // Cập nhật lại thanh menu ngay lập tức
-        $('#loginModal').modal('hide');
-    } else {
-        alert("Sai tài khoản hoặc mật khẩu! Dữ liệu không khớp với bất kỳ tài khoản nào.");
-    }
-    this.reset();
-});
-
-// ==========================================
-// HÀM TỰ ĐỘNG KIỂM TRA TRẠNG THÁI ĐĂNG NHẬP ĐỂ ĐỔI GIAO DIỆN MENU
-// ==========================================
-function checkLoginStatus() {
-    var currentUser = localStorage.getItem('CURRENT_USER');
-    if (currentUser) {
-        // Đang có người dùng đăng nhập: Ẩn nút "Đăng nhập" thô, hiện menu dropdown chào mừng
-        $('#nav-guest').hide();
-        $('#nav-user').show();
-        $('#user-display-name').text(currentUser);
-    } else {
-        // Không có ai đăng nhập hoặc vừa đăng xuất: Hiện lại nút "Đăng nhập"
-        $('#nav-guest').show();
-        $('#nav-user').hide();
-    }
+    return list;
 }
 
-// Chạy kích hoạt hàm này ngay khi trình duyệt vừa load xong file JS
-$(document).ready(function() {
-    checkLoginStatus();
-});
+// ==========================================
+// 3. LOGIC LỌC VÀ SẮP XẾP SẢN PHẨM
+// ==========================================
+var currentList = [];
+var currentSort = "default";
 
-// SỰ KIỆN KHI NGƯỜI DÙNG NHẤN NÚT ĐĂNG XUẤT TÀI KHOẢN
-$('#btn-logout').on('click', function(e) {
-    e.preventDefault();
-    if(confirm("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống ArtDoor không?")) {
-        localStorage.removeItem('CURRENT_USER'); // Xóa sạch dấu vết session cũ
-        alert("Đã đăng xuất tài khoản thành công!");
-        window.location.reload(); // Tải lại trang để cập nhật menu sạch sẽ về trạng thái ban đầu
+function renderProducts() {
+    // 3.1. Lấy danh sách các phân loại đang được check dữ liệu
+    var checkedTypes = [];
+    $('.filter-checkbox:checked').each(function() {
+        checkedTypes.push($(this).val());
+    });
+
+    // 3.2. Tiến hành lọc
+    var filtered = currentList.filter(function(p) {
+        return checkedTypes.indexOf(p.type) !== -1;
+    });
+
+    // 3.3. Tiến hành sắp xếp
+    if (currentSort === "asc") {
+        filtered.sort((a, b) => a.price - b.price);
+    } else if (currentSort === "desc") {
+        filtered.sort((a, b) => b.price - a.price);
+    } else if (currentSort === "new") {
+        filtered.sort((a, b) => b.id - a.id); // ID lớn hơn coi như hàng mới hơn
     }
+
+    // 3.4. Cập nhật số lượng hiển thị lên giao diện
+    $('#total-products').text(filtered.length);
+
+    // 3.5. Đổ HTML ra màn hình
+    var html = "";
+    if (filtered.length === 0) {
+        html = '<div class="col-xs-12 text-center"><p class="text-muted" style="padding: 40px 0;">Không tìm thấy sản phẩm phù hợp với bộ lọc!</p></div>';
+    } else {
+        filtered.forEach(function(p) {
+            var badgeHtml = p.tag ? '<span class="label label-danger" style="position: absolute; top: 10px; left: 10px; padding: 5px;">' + p.tag + '</span>' : '';
+            html += '<div class="col-sm-4 text-center" style="margin-bottom: 30px;">' +
+                        '<div class="thumbnail" style="position: relative; min-height: 340px;">' +
+                            badgeHtml +
+                            '<img src="' + p.img + '" alt="' + p.name + '" style="height: 160px; width:100%; object-fit: cover;">' +
+                            '<div class="caption">' +
+                                '<h5 style="height: 36px; overflow: hidden; font-size:13px;"><strong>' + p.name + '</strong></h5>' +
+                                '<p style="color: #d9534f; font-weight: bold;">' + p.price.toLocaleString('vi-VN') + 'đ</p>' +
+                                '<button class="btn btn-danger btn-sm" onclick="addToCart()">Chọn Mua</button>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+        });
+    }
+    $('#product-container').html(html);
+}
+
+// KHỞI CHẠY KHI TẢI TRANG
+$(document).ready(function() {
+    updateCartBadge();
+
+    // Tự động nhận diện trang dựa vào thẻ body hoặc tiêu đề id
+    var pageType = $('#page-identifier').data('page'); 
+    if (pageType) {
+        currentList = generate20Products(pageType);
+        renderProducts();
+    }
+
+    // Sự kiện lắng nghe khi bấm Tích/Bỏ tích vào các ô Checkbox bộ lọc
+    $('.filter-checkbox').on('change', function() {
+        renderProducts();
+    });
+
+    // Sự kiện lắng nghe khi bấm vào các tùy chọn sắp xếp giá/mới nhất
+    $('.sort-link').on('click', function(e) {
+        e.preventDefault();
+        currentSort = $(this).data('sort');
+        $('.sort-link').css('font-weight', 'normal');
+        $(this).css('font-weight', 'bold');
+        renderProducts();
+    });
 });
