@@ -27,17 +27,26 @@
 // ==========================================
 // CHỨC NĂNG GIỎ HÀNG (QUẢN LÝ BIẾN VÀ BADGE)
 // ==========================================
-var cartCount = 0; // Khai báo biến toàn cục quản lý số lượng sản phẩm
+var cartCount = parseInt(localStorage.getItem('CART_COUNT')) || 0;
 
-function addToCart() {
-    cartCount++; // Tăng số lượng lên 1 mỗi khi click mua
-    // Cập nhật số hiển thị lên badge trên thanh Navbar
+function updateCartBadge() {
     var badge = document.getElementById('cart-badge');
     if (badge) {
         badge.innerText = cartCount;
     }
-    alert('Đã thêm 1 sản phẩm họa cụ tiêu biểu vào giỏ hàng thành công!');
 }
+
+function addToCart() {
+    cartCount++;
+    localStorage.setItem('CART_COUNT', cartCount); // Lưu lại số lượng vào trình duyệt
+    updateCartBadge();
+    alert('Đã thêm sản phẩm vào giỏ hàng thành công!');
+}
+
+// Tự động cập nhật số giỏ hàng mỗi khi load bất kỳ trang nào lên
+$(document).ready(function() {
+    updateCartBadge();
+});
 
 // ==========================================
 // TỰ ĐỘNG TÍCH CHỌN COMBO KHI MỞ MODAL ĐẶT HÀNG
