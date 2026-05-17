@@ -1,94 +1,117 @@
+// Khai báo biến toàn cục quản lý số lượng sản phẩm giỏ hàng (Yêu cầu nâng cao)
+var cartCount = 0;
+
+function addToCart() {
+    cartCount++;
+    // Cập nhật số lượng lên badge của menu
+    $('#cart-badge').text(cartCount);
+    alert("Đã thêm sản phẩm họa cụ vào giỏ hàng thành công!");
+}
+
 $(document).ready(function(){
-    // 1. Kỹ thuật: Smooth Scrolling cho Menu & Nút up-arrow
+    // 1. CHỨC NĂNG: Smooth Scrolling (Cuộn mượt khi nhấn menu)
     $("nav a[href^='#'], footer a[href^='#']").on('click', function(event) {
         if (this.hash !== "") {
             event.preventDefault();
             var hash = this.hash;
             $('html, body').animate({
                 scrollTop: $(hash).offset().top
-            }, 900, function(){
+            }, 800, function(){
                 window.location.hash = hash;
             });
         }
     });
 
-    // 2. Kỹ thuật: Xử lý Modal Form trong Pricing
-    // Tự động checked vào dịch vụ tương ứng khi bấm button ở panel Pricing
+    // 2. CHỨC NĂNG: Điều khiển Modal Bảng Giá Combo
     $('.btn-order').on('click', function() {
-        // Xóa hết check cũ
+        // Reset sạch các lựa chọn cũ
         $('input[name="serviceCb"]').prop('checked', false);
-        // Lấy data-service từ button được click
-        var serviceType = $(this).data('service');
-        // Tick vào checkbox tương ứng
-        $('#cb-' + serviceType).prop('checked', true);
+        // Đọc dữ liệu định danh từ nút bấm được kích hoạt
+        var targetCombo = $(this).data('service');
+        // Kích hoạt tích sẵn vào checkbox tương ứng trong form popup
+        $('#cb-' + targetCombo).prop('checked', true);
     });
 
-    // Validate Modal Form khi submit
+    // RÀNG BUỘC KIỂM TRA (VALIDATION) FORM ĐẶT MUA TRÊN MODAL
     $('#pricingForm').on('submit', function(e) {
         e.preventDefault();
         var isValid = true;
-        
-        // Kiểm tra Email định dạng hợp lệ
-        var email = $('#pEmail').val();
+
+        var name = $('#pName').val().trim();
+        var phone = $('#pPhone').val().trim();
+        var email = $('#pEmail').val().trim();
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Bắt buộc nhập đầy đủ tất cả dữ liệu chữ
+        if(name === "" || phone === "" || email === "") {
+            alert("Vui lòng không để trống bất kỳ trường thông tin liên lạc nào!");
+            isValid = false;
+            return;
+        }
+
+        // Kiểm tra định dạng Email hợp lệ
         if (!emailRegex.test(email)) {
-            $('#errPEmail').text("Email không hợp lệ!");
+            $('#errPEmail').text("Định dạng email của bạn nhập không hợp lệ (Ví dụ: abc@gmail.com)!");
             isValid = false;
         } else {
             $('#errPEmail').text("");
         }
 
-        // Kiểm tra phải chọn ít nhất 1 checkbox
+        // Bắt buộc chọn ít nhất 1 hộp dịch vụ họa cụ
         if ($('input[name="serviceCb"]:checked').length === 0) {
-            $('#errPCheckbox').text("Vui lòng chọn ít nhất 1 dịch vụ!");
+            $('#errPCheckbox').text("Bắt buộc phải tích chọn ít nhất một Combo sản phẩm bạn muốn đặt mua!");
             isValid = false;
         } else {
             $('#errPCheckbox').text("");
         }
 
         if (isValid) {
-            alert("Gửi đăng ký dịch vụ thành công!");
+            alert("Hệ thống ArtDoor đã ghi nhận đơn đặt hàng của bạn! Chúng tôi sẽ gọi lại hỗ trợ ngay.");
             $('#orderModal').modal('hide');
             this.reset();
         }
     });
 
-    // 3. Kỹ thuật: Validate Contact Form (index.html)
+    // 3. RÀNG BUỘC KIỂM TRA (VALIDATION) FORM LIÊN HỆ DƯỚI ĐÁY TRANG
     $('#contactForm').on('submit', function(e) {
         e.preventDefault();
         var isValid = true;
 
-        // Name: Bắt buộc, Không chứa ký tự số
-        var name = $('#cName').val();
-        var nameRegex = /\d/; // Biểu thức tìm số
-        if(name.trim() === "" || nameRegex.test(name)) {
-            $('#errName').text("Tên không được rỗng và không chứa chữ số!");
+        // Tên: Không chứa số
+        var name = $('#cName').val().trim();
+        var containsNumber = /\d/; 
+        if(name === "" || containsNumber.test(name)) {
+            $('#errName').text("Họ tên không được rỗng và tuyệt đối không được chứa chữ số!");
             isValid = false;
         } else {
             $('#errName').text("");
         }
 
         // Email: Bắt buộc
-        var cEmail = $('#cEmail').val();
-        if(cEmail.trim() === "") {
-            $('#errEmail').text("Email bắt buộc phải nhập!");
+        var email = $('#cEmail').val().trim();
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(email === "") {
+            $('#errEmail').text("Vui lòng nhập địa chỉ Email bắt buộc!");
+            isValid = false;
+        } else if (!emailRegex.test(email)) {
+            $('#errEmail').text("Email không đúng định dạng!");
             isValid = false;
         } else {
             $('#errEmail').text("");
         }
 
-        // Nội dung: Độ dài tối thiểu 20
-        var msg = $('#cMessage').val();
+        // Tin nhắn: Phải dài từ 20 kí tự trở lên
+        var msg = $('#cMessage').val().trim();
         if(msg.length < 20) {
-            $('#errMessage').text("Nội dung phải dài ít nhất 20 ký tự!");
+            $('#errMessage').text("Nội dung tin nhắn gửi tới ArtDoor phải dài tối thiểu từ 20 ký tự trở lên để đảm bảo rõ nghĩa!");
             isValid = false;
         } else {
             $('#errMessage').text("");
         }
 
         if(isValid) {
-            alert("Thông tin liên hệ của bạn đã được gửi!");
-            this.reset(); // Xóa form sau khi gửi
+            alert("Lời nhắn phản hồi của bạn đã gửi thành công!");
+            this.reset();
         }
     });
 });

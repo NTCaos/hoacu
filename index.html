@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArtDoor - Họa Cụ Chính Hãng</title>
-    <!-- Bootstrap 3 CSS -->
+    <title>ArtDoor - Thế Giới Họa Cụ Chuyên Nghiệp</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<!-- Khai báo Scrollspy để highlight menu -->
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-    <!-- MENU -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -21,109 +17,110 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>                        
                 </button>
-                <a class="navbar-brand" href="#myPage"><b>ARTDOOR</b></a>
+                <a class="navbar-brand" href="#myPage">ARTDOOR</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#about">GIỚI THIỆU</a></li>
-                    <li><a href="#services">SẢN PHẨM</a></li>
+                    <li><a href="#services">DANH MỤC</a></li>
                     <li><a href="#portfolio">DỰ ÁN</a></li>
-                    <li><a href="#pricing">BẢNG GIÁ</a></li>
+                    <li><a href="#pricing">BẢNG GIÁ COMBO</a></li>
                     <li><a href="#contact">LIÊN HỆ</a></li>
-                    <!-- Yêu cầu nâng cao: Form Đăng nhập (Modal) -->
-                    <li><a href="#" data-toggle="modal" data-target="#loginModal">ĐĂNG NHẬP</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> ĐĂNG NHẬP</a></li>
+                    <li><a href="#" onclick="alert('Giỏ hàng hiện tại có ' + cartCount + ' sản phẩm!')"><span class="glyphicon glyphicon-shopping-cart"></span> GIỎ HÀNG (<span id="cart-badge">0</span>)</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- BANNER (Jumbotron) -->
     <div class="jumbotron text-center">
-        <h1>Thế Giới Họa Cụ</h1> 
-        <p>Đồng hành cùng đam mê nghệ thuật của bạn</p> 
-        <form class="form-inline">
+        <h1>ARTDOOR SHOP</h1> 
+        <p>Chuyên kinh doanh họa cụ, màu vẽ, bút cọ, giấy vẽ mỹ thuật cao cấp</p> 
+        <form class="form-inline" onsubmit="event.preventDefault(); alert('Chức năng tìm kiếm đang được xây dựng!');">
             <div class="input-group">
-                <input type="text" class="form-control" size="50" placeholder="Tìm kiếm cọ vẽ, màu nước, giấy canvas..." required>
+                <input type="text" class="form-control" size="50" placeholder="Tìm kiếm cọ vẽ, màu nước, sổ sketch..." required>
                 <div class="input-group-btn">
-                    <button type="button" class="btn btn-danger">SEARCH</button>
+                    <button type="submit" class="btn btn-danger">TÌM KIẾM</button>
                 </div>
             </div>
         </form>
     </div>
 
-    <!-- ABOUT -->
     <div id="about" class="container-fluid">
         <div class="row">
             <div class="col-sm-8">
-                <h2>Về ArtDoor</h2>
-                <p>Chúng tôi cung cấp các loại họa cụ chuyên nghiệp từ các thương hiệu hàng đầu thế giới. Cam kết mang đến chất lượng tốt nhất cho giới họa sĩ và những người yêu nghệ thuật.</p>
-                <a href="about.html" class="btn btn-default btn-lg">Xem chi tiết</a>
+                <h2>Về Họa cụ ArtDoor</h2>
+                <h4>Nơi chắp cánh cho những tác phẩm nghệ thuật đích thực.</h4>
+                <p>Được thành lập từ niềm đam mê hội họa bất tận, ArtDoor tự hào là hệ thống phân phối họa cụ chính hãng hàng đầu. Chúng tôi mang đến cho các bạn học sinh, sinh viên kiến trúc, mỹ thuật và các họa sĩ chuyên nghiệp những sản phẩm tốt nhất từ Holbein, Daniel Smith, Arches, Canson...</p>
+                <br><a href="about.html" class="btn btn-warning btn-lg">Xem chi tiết lịch sử cửa hàng</a>
             </div>
             <div class="col-sm-4">
-                <span class="glyphicon glyphicon-picture logo"></span>
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=400" class="img-responsive img-thumbnail" alt="Art Workshop">
             </div>
         </div>
     </div>
 
-    <!-- SERVICES -->
     <div id="services" class="container-fluid text-center bg-grey">
-        <h2>SẢN PHẨM & DỊCH VỤ</h2>
-        <h4>Những danh mục nổi bật</h4>
-        <div class="row text-center">
+        <h2>DANH MỤC HỌA CỤ CUNG CẤP</h2>
+        <h4>Sản phẩm tiêu biểu chọn lọc</h4>
+        <br>
+        <div class="row">
             <div class="col-sm-4">
                 <span class="glyphicon glyphicon-tint logo-small"></span>
-                <h4>MÀU NƯỚC</h4>
-                <p>Màu nước Holbein, Winsor & Newton...</p>
-                <a href="service1.html">Chi tiết</a>
+                <h4>MÀU NƯỚC CHUYÊN NGHIỆP</h4>
+                <p>Màu tuýp, màu bánh mật độ hạt sắc tố cực cao, bền màu tuyệt đối theo thời gian.</p>
+                <p><a href="service1.html" class="btn btn-default">Xem chi tiết nhóm màu</a></p>
+                <button class="btn btn-danger" onclick="addToCart()">Chọn Mua Nhanh</button>
             </div>
             <div class="col-sm-4">
                 <span class="glyphicon glyphicon-pencil logo-small"></span>
-                <h4>CỌ VẼ</h4>
-                <p>Cọ tỉa, cọ wash lông thú tự nhiên.</p>
-                <a href="service2.html">Chi tiết</a>
+                <h4>CỌ VẼ THỦ CÔNG</h4>
+                <p>Đầy đủ các dáng cọ tỉa, cọ flat, cọ ngậm nước tốt làm hoàn toàn từ lông thú tự nhiên.</p>
+                <p><a href="service2.html" class="btn btn-default">Xem chi tiết nhóm cọ</a></p>
+                <button class="btn btn-danger" onclick="addToCart()">Chọn Mua Nhanh</button>
             </div>
             <div class="col-sm-4">
                 <span class="glyphicon glyphicon-book logo-small"></span>
-                <h4>SỔ & GIẤY</h4>
-                <p>Giấy Arches, sổ phác thảo cao cấp.</p>
-                <a href="service3.html">Chi tiết</a>
+                <h4>GIẤY VÀ SỔ VẼ CAO CẤP</h4>
+                <p>Giấy 100% Cotton định lượng 300gsm vân Cold Press, Hot Press chịu nước cực tốt.</p>
+                <p><a href="service3.html" class="btn btn-default">Xem chi tiết nhóm giấy</a></p>
+                <button class="btn btn-danger" onclick="addToCart()">Chọn Mua Nhanh</button>
             </div>
         </div>
     </div>
 
-    <!-- PORTFOLIO -->
     <div id="portfolio" class="container-fluid text-center">
-        <h2>DỰ ÁN & THÀNH TỰU</h2>
-        <!-- Hàng 1: Các thành tựu -->
-        <div class="row">
+        <h2>DỰ ÁN & THÀNH TỰU ĐẠT ĐƯỢC</h2>
+        <h4>Các hoạt động mỹ thuật nổi bật chúng tôi hân hạnh đồng hành</h4>
+        <br>
+        <div class="row text-center">
             <div class="col-sm-4">
                 <div class="thumbnail">
-                    <img src="https://via.placeholder.com/400x300?text=Exhibition+1" alt="Triển lãm">
-                    <p><strong>Triển lãm Màu Nước 2025</strong></p>
-                    <p>Tài trợ họa cụ chính thức</p>
-                    <button class="btn btn-primary">Xem thêm</button>
+                    <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=400" alt="Triển lãm">
+                    <p><strong>Triển Lãm Màu Nước Toàn Quốc</strong></p>
+                    <p>Nhà tài trợ họa cụ độc quyền</p>
+                    <a href="portfolio-detail.html" class="btn btn-default">Chi tiết</a>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="thumbnail">
-                    <img src="https://via.placeholder.com/400x300?text=Workshop" alt="Workshop">
-                    <p><strong>Workshop Ký họa</strong></p>
-                    <p>Hợp tác cùng CLB Mỹ thuật</p>
-                    <button class="btn btn-primary">Xem thêm</button>
+                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=400" alt="Workshop">
+                    <p><strong>Workshop Ký Họa Phố Cổ</strong></p>
+                    <p>Hỗ trợ dụng cụ vẽ miễn phí</p>
+                    <a href="portfolio-detail.html" class="btn btn-default">Chi tiết</a>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="thumbnail">
-                    <img src="https://via.placeholder.com/400x300?text=Award" alt="Award">
-                    <p><strong>Top 10 Đại lý</strong></p>
-                    <p>Đại lý xuất sắc của Holbein</p>
-                    <button class="btn btn-primary">Xem thêm</button>
+                    <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=400" alt="Đại lý">
+                    <p><strong>Chứng Nhận Đối Tác Vàng</strong></p>
+                    <p>Đại lý xuất sắc của hãng họa cụ Holbein</p>
+                    <a href="portfolio-detail.html" class="btn btn-default">Chi tiết</a>
                 </div>
             </div>
-        </div>
+        </div><br>
         
-        <!-- Hàng 2: Ý kiến khách hàng (Carousel) -->
-        <h3 class="mt-5">Khách hàng nói gì về chúng tôi</h3>
+        <h2>ĐÁNH GIÁ TỪ HỌA SĨ</h2>
         <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -131,10 +128,10 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <h4>"Họa cụ rất chất lượng, đóng gói cực kỳ cẩn thận!"<br><span>- Nguyễn Văn A, Họa sĩ tự do</span></h4>
+                    <h4>"Họa cụ mua ở ArtDoor đóng gói cực kỳ cẩn thận, cọ vẽ không bị dập lông khi ship xa!"<br><span style="font-style:normal;">- Họa sĩ Nguyễn Lâm, Hội Mỹ Thuật TP.HCM</span></h4>
                 </div>
                 <div class="item">
-                    <h4>"Giao hàng nhanh, màu lên giấy Arches cực kỳ mướt."<br><span>- Trần Thị B, Sinh viên Kiến trúc</span></h4>
+                    <h4>"Giấy Arches chuẩn chính hãng, loang màu rất êm. Sẽ tiếp tục ủng hộ shop dài dài."<br><span style="font-style:normal;">- Bạn Minh Trang, Sinh viên Đại học Kiến Trúc</span></h4>
                 </div>
             </div>
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -146,102 +143,94 @@
         </div>
     </div>
 
-    <!-- PRICING -->
     <div id="pricing" class="container-fluid bg-grey">
         <div class="text-center">
-            <h2>GÓI DỊCH VỤ / COMBO MUA HÀNG</h2>
-            <h4>Chọn combo phù hợp để tiết kiệm chi phí</h4>
+            <h2>BẢNG GIÁ COMBO HỌA CỤ TRỌN BỘ</h2>
+            <h4>Tiết kiệm lên tới 20% khi mua theo bộ sản phẩm phối sẵn</h4>
         </div>
+        <br>
         <div class="row">
             <div class="col-sm-4">
                 <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h1>Combo Basic</h1>
-                    </div>
+                    <div class="panel-heading"><h1>Combo Nhập Môn</h1></div>
                     <div class="panel-body">
-                        <p><strong>1</strong> Hộp màu nước 12 màu</p>
-                        <p><strong>3</strong> Cọ vẽ cơ bản</p>
-                        <p><strong>1</strong> Sổ phác thảo A5</p>
+                        <p><strong>1</strong> Hộp Màu Nước 12 Màu Basic</p>
+                        <p><strong>2</strong> Cọ Tỉa Lông Nhân Tạo</p>
+                        <p><strong>1</strong> Sổ Vẽ Định Lượng 200gsm</p>
                     </div>
                     <div class="panel-footer">
-                        <h3>500.000đ</h3>
-                        <!-- Đẩy data-service để JS tự động tick vào form -->
-                        <button class="btn btn-lg btn-order" data-toggle="modal" data-target="#orderModal" data-service="basic">Chọn Gói Này</button>
+                        <h3>350.000đ</h3>
+                        <button class="btn btn-lg btn-block btn-warning btn-order" data-toggle="modal" data-target="#orderModal" data-service="basic">Đăng ký mua</button>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="panel panel-primary text-center">
-                    <div class="panel-heading">
-                        <h1>Combo Pro</h1>
-                    </div>
+                    <div class="panel-heading"><h1>Combo Bán Chuyên</h1></div>
                     <div class="panel-body">
-                        <p><strong>1</strong> Hộp màu nước 24 màu</p>
-                        <p><strong>5</strong> Cọ lông chồn cao cấp</p>
-                        <p><strong>2</strong> Giấy Arches 300gsm</p>
+                        <p><strong>1</strong> Hộp Màu Bánh Nước 24 Màu</p>
+                        <p><strong>4</strong> Cọ Ngậm Nước Cao Cấp</p>
+                        <p><strong>1</strong> Tập Giấy Cotton 300gsm</p>
                     </div>
                     <div class="panel-footer">
-                        <h3>1.500.000đ</h3>
-                        <button class="btn btn-lg btn-order" data-toggle="modal" data-target="#orderModal" data-service="pro">Chọn Gói Này</button>
+                        <h3>950.000đ</h3>
+                        <button class="btn btn-lg btn-block btn-warning btn-order" data-toggle="modal" data-target="#orderModal" data-service="pro">Đăng ký mua</button>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h1>Combo Master</h1>
-                    </div>
+                    <div class="panel-heading"><h1>Combo Cao Cấp</h1></div>
                     <div class="panel-body">
-                        <p>Màu tuýp chuyên nghiệp</p>
-                        <p>Bộ cọ full size</p>
-                        <p>Giá vẽ gỗ cao cấp</p>
+                        <p><strong>1</strong> Bộ Màu Tuýp Holbein Artist</p>
+                        <p><strong>5</strong> Cọ Vẽ Lông Thú Handmade</p>
+                        <p><strong>1</strong> Cuộn Giấy Vẽ Arches Cao Cấp</p>
                     </div>
                     <div class="panel-footer">
-                        <h3>3.000.000đ</h3>
-                        <button class="btn btn-lg btn-order" data-toggle="modal" data-target="#orderModal" data-service="master">Chọn Gói Này</button>
+                        <h3>2.450.000đ</h3>
+                        <button class="btn btn-lg btn-block btn-warning btn-order" data-toggle="modal" data-target="#orderModal" data-service="master">Đăng ký mua</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- CONTACT -->
-    <div id="contact" class="container-fluid text-center">
-        <h2>LIÊN HỆ</h2>
+    <div id="contact" class="container-fluid">
+        <h2 class="text-center">LIÊN HỆ VỚI ARTDOOR</h2>
+        <br>
         <div class="row">
-            <div class="col-sm-6 text-left">
-                <p>Hãy liên hệ với chúng tôi nếu bạn cần tư vấn họa cụ.</p>
-                <p><span class="glyphicon glyphicon-map-marker"></span> TP. Hồ Chí Minh, Việt Nam</p>
-                <p><span class="glyphicon glyphicon-phone"></span> +84 123 456 789</p>
-                <p><span class="glyphicon glyphicon-envelope"></span> cskh@artdoor.vn</p>
+            <div class="col-sm-5">
+                <p>Hỗ trợ giải đáp thắc mắc về kỹ thuật loang màu và chọn cọ vẽ phù hợp.</p>
+                <p><span class="glyphicon glyphicon-map-marker"></span> Quận Bình Thạnh, TP. Hồ Chí Minh</p>
+                <p><span class="glyphicon glyphicon-phone"></span> Hotline: 090 123 4567</p>
+                <p><span class="glyphicon glyphicon-envelope"></span> lienhe@artdoor.vn</p>
             </div>
-            <div class="col-sm-6">
-                <!-- Layout Horizontal Form -->
+            <div class="col-sm-7">
                 <form class="form-horizontal" id="contactForm">
                     <div class="form-group">
-                        <label class="control-label col-sm-3" for="cName">Tên:</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="cName" placeholder="Nhập tên của bạn">
+                        <label class="control-label col-sm-2" for="cName">Họ Tên:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="cName" placeholder="Nhập họ tên (Không chứa chữ số)">
                             <span class="text-danger" id="errName"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3" for="cEmail">Email:</label>
-                        <div class="col-sm-9">
-                            <input type="email" class="form-control" id="cEmail" placeholder="Nhập email">
+                        <label class="control-label col-sm-2" for="cEmail">Email:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="cEmail" placeholder="Nhập địa chỉ email hợp lệ">
                             <span class="text-danger" id="errEmail"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3" for="cMessage">Nội dung:</label>
-                        <div class="col-sm-9">
-                            <textarea class="form-control" id="cMessage" rows="5" placeholder="Nội dung liên hệ (ít nhất 20 ký tự)"></textarea>
+                        <label class="control-label col-sm-2" for="cMessage">Nội Dung:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="cMessage" rows="4" placeholder="Nội dung lời nhắn (tối thiểu 20 ký tự)"></textarea>
                             <span class="text-danger" id="errMessage"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-9 text-left">
-                            <button type="submit" class="btn btn-default">Gửi Liên Hệ</button>
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-danger px-4">Gửi Lời Nhắn</button>
                         </div>
                     </div>
                 </form>
@@ -249,71 +238,85 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer class="text-center">
         <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="Lên đầu trang">
-            <span class="glyphicon glyphicon-chevron-up"></span>
+            <span class="glyphicon glyphicon-chevron-up" style="font-size: 20px;"></span>
         </a><br><br>
-        <p>Bản quyền © 2026 ArtDoor - Cửa hàng Họa Cụ. <br>
-           Chi nhánh 1: Quận 1, TP.HCM | Chi nhánh 2: Quận Cầu Giấy, Hà Nội</p>
-        <div class="social-links">
-            <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Instagram</a>
+        <p>Bản quyền thuộc về © 2026 <strong>ArtDoor Hoacu</strong> - Hệ thống phân phối họa cụ toàn quốc.</p>
+        <p>Hệ thống cửa hàng:<br>
+        CS1: Nguyễn Gia Trí, Bình Thạnh, TP.HCM | CS2: Trần Quốc Hoàn, Cầu Giấy, Hà Nội</p>
+        <div>
+            <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Youtube</a>
         </div>
     </footer>
 
-    <!-- ================= MODAL PHẦN PRICING ================= -->
     <div id="orderModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Đăng ký mua Combo Dịch Vụ</h4>
+                    <h4 class="modal-title">Phiếu Đăng Ký Đặt Mua Combo Họa Cụ</h4>
                 </div>
                 <div class="modal-body">
-                    <!-- Layout Vertical Form (mặc định của thẻ form không có class form-horizontal) -->
                     <form id="pricingForm">
                         <div class="form-group">
-                            <label for="pName">Họ tên:</label>
-                            <input type="text" class="form-control" id="pName" required>
+                            <label for="pName">Họ và tên khách hàng:</label>
+                            <input type="text" class="form-control" id="pName">
                         </div>
                         <div class="form-group">
-                            <label for="pPhone">Số điện thoại:</label>
-                            <input type="text" class="form-control" id="pPhone" required>
+                            <label for="pPhone">Số điện thoại liên lạc:</label>
+                            <input type="text" class="form-control" id="pPhone">
                         </div>
                         <div class="form-group">
-                            <label for="pEmail">Email:</label>
-                            <input type="email" class="form-control" id="pEmail" required>
+                            <label for="pEmail">Địa chỉ Email:</label>
+                            <input type="text" class="form-control" id="pEmail">
                             <span class="text-danger" id="errPEmail"></span>
                         </div>
-                        
                         <div class="form-group">
-                            <label>Các lựa chọn dịch vụ (Chọn ít nhất 1):</label>
-                            <span class="text-danger" id="errPCheckbox"></span>
-                            <div class="checkbox">
-                                <label><input type="checkbox" name="serviceCb" value="basic" id="cb-basic"> Combo Basic</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" name="serviceCb" value="pro" id="cb-pro"> Combo Pro</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" name="serviceCb" value="master" id="cb-master"> Combo Master</label>
-                            </div>
+                            <label>Chọn các combo muốn lấy (Có thể chọn nhiều):</label>
+                            <span class="text-danger" id="errPCheckbox" style="display:block;"></span>
+                            <div class="checkbox"><label><input type="checkbox" name="serviceCb" value="basic" id="cb-basic"> Combo Nhập Môn</label></div>
+                            <div class="checkbox"><label><input type="checkbox" name="serviceCb" value="pro" id="cb-pro"> Combo Bán Chuyên</label></div>
+                            <div class="checkbox"><label><input type="checkbox" name="serviceCb" value="master" id="cb-master"> Combo Cao Cấp</label></div>
                         </div>
-
                         <div class="form-group">
-                            <label for="pRequest">Yêu cầu khác:</label>
+                            <label for="pRequest">Ghi chú / Yêu cầu gói quà riêng:</label>
                             <textarea class="form-control" id="pRequest" rows="3"></textarea>
                         </div>
-
-                        <button type="submit" class="btn btn-success">Gửi Thông Tin</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng lại</button>
+                            <button type="submit" class="btn btn-success">Xác nhận gửi đơn</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <div id="loginModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Đăng Nhập Thành Viên</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm" onsubmit="event.preventDefault(); alert('Đăng nhập thành công hệ thống ArtDoor!'); $('#loginModal').modal('hide');">
+                        <div class="form-group">
+                            <label>Tài khoản:</label>
+                            <input type="text" class="form-control" required placeholder="Tên đăng nhập hoặc Email">
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu:</label>
+                            <input type="password" class="form-control" required placeholder="******">
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-block">Đăng Nhập</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>

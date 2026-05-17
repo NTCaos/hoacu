@@ -1,92 +1,109 @@
+/* Màu sắc chủ đạo và font chữ */
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.8;
-    color: #444;
+    color: #333;
 }
-/* Banner */
+
+/* Menu điều hướng luôn nằm trên top */
+.navbar {
+    margin-bottom: 0;
+    background-color: #e65100; /* Màu cam đậm */
+    z-index: 9999;
+    border: 0;
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+.navbar .navbar-brand, .navbar .navbar-nav li a {
+    color: #fff !important;
+    font-weight: bold;
+}
+/* Highlight menu khi hoạt động hoặc hover */
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #e65100 !important;
+    background-color: #fff !important;
+}
+
+/* Banner Jumbotron chính giữa */
 .jumbotron {
-    background-color: #f4511e;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=1200') no-repeat center center;
+    background-size: cover;
     color: #fff;
-    padding: 100px 25px;
+    padding: 150px 25px;
     margin-bottom: 0;
 }
-.jumbotron input[type="text"] {
-    max-width: 400px;
-}
-/* Typography & Container spacing */
-h2 {
-    font-size: 24px;
-    text-transform: uppercase;
-    color: #303030;
-    font-weight: 600;
-    margin-bottom: 30px;
-}
+
+/* Các khoảng cách các vùng (About, Services...) */
 .container-fluid {
-    padding: 60px 50px;
+    padding: 80px 50px;
 }
 .bg-grey {
     background-color: #f6f6f6;
 }
-/* Custom Icons */
+
+/* Icons định dạng */
 .logo {
-    color: #f4511e;
-    font-size: 200px;
+    color: #e65100;
+    font-size: 180px;
+    display: block;
+    text-align: center;
 }
 .logo-small {
-    color: #f4511e;
+    color: #e65100;
     font-size: 50px;
+    margin-bottom: 15px;
 }
-/* Navbar */
-.navbar {
-    margin-bottom: 0;
-    background-color: #f4511e;
-    z-index: 9999;
-    border: 0;
+
+/* Ảnh sản phẩm / Thành tựu */
+.thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
     border-radius: 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
 }
-.navbar .navbar-brand, .navbar .navbar-nav li a {
-    color: #fff !important;
+.thumbnail:hover {
+    transform: translateY(-5px);
 }
-.navbar-nav li a:hover, .navbar-nav li.active a {
-    color: #f4511e !important;
-    background-color: #fff !important;
+.thumbnail img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
-.navbar-default .navbar-toggle {
-    border-color: transparent;
-    color: #fff !important;
-}
-/* Panels (Pricing) */
+
+/* Khối bảng giá Pricing Panels */
 .panel {
-    border: 1px solid #f4511e; 
-    transition: box-shadow 0.5s;
+    border: 1px solid #e65100; 
+    border-radius: 4px;
+    transition: box-shadow 0.3s;
 }
 .panel:hover {
-    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
-}
-.panel-footer .btn:hover {
-    border: 1px solid #f4511e;
-    background-color: #fff !important;
-    color: #f4511e;
+    box-shadow: 0px 5px 25px rgba(230,81,0, .3);
 }
 .panel-heading {
     color: #fff !important;
-    background-color: #f4511e !important;
+    background-color: #e65100 !important;
     padding: 25px;
     border-bottom: 1px solid transparent;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
 }
 .panel-footer {
-    background-color: white !important;
+    background-color: #fff !important;
 }
 .panel-footer h3 {
     font-size: 32px;
+    color: #e65100;
 }
-/* Carousel Styling */
-.carousel-inner h4 {
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.5;
+
+/* Định dạng Footer */
+footer {
+    background-color: #2d2d30;
+    color: #f5f5f5;
+    padding: 32px;
+}
+footer a {
+    color: #f5f5f5;
+}
+footer a:hover {
+    color: #e65100;
+    text-decoration: none;
 }
