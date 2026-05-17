@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -15,7 +17,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>                        
+                    <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#myPage">ARTDOOR</a>
             </div>
@@ -26,19 +28,37 @@
                     <li><a href="#portfolio">DỰ ÁN</a></li>
                     <li><a href="#pricing">BẢNG GIÁ COMBO</a></li>
                     <li><a href="#contact">LIÊN HỆ</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> ĐĂNG NHẬP</a></li>
-                    <li><a href="#" onclick="alert('Giỏ hàng hiện tại có ' + cartCount + ' sản phẩm!')"><span class="glyphicon glyphicon-shopping-cart"></span> GIỎ HÀNG (<span id="cart-badge">0</span>)</a></li>
+
+                    <li id="nav-guest"><a href="#" data-toggle="modal" data-target="#loginModal"><span
+                                class="glyphicon glyphicon-user"></span> ĐĂNG NHẬP</a></li>
+
+                    <li id="nav-user" class="dropdown" style="display: none;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"></span> Chào, <span id="user-display-name">Thành
+                                viên</span> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" style="background-color: #2d2d30;">
+                            <li><a href="#" id="btn-logout" style="color: #fff !important; padding: 10px 20px;">Đăng
+                                    xuất tài khoản</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#" onclick="alert('Giỏ hàng hiện tại có ' + cartCount + ' sản phẩm!')"><span
+                                class="glyphicon glyphicon-shopping-cart"></span> GIỎ HÀNG (<span
+                                id="cart-badge">0</span>)</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <div class="jumbotron text-center">
-        <h1>ARTDOOR SHOP</h1> 
-        <p>Chuyên kinh doanh họa cụ, màu vẽ, bút cọ, giấy vẽ mỹ thuật cao cấp</p> 
+        <h1>ARTDOOR SHOP</h1>
+        <p>Chuyên kinh doanh họa cụ, màu vẽ, bút cọ, giấy vẽ mỹ thuật cao cấp</p>
         <form class="form-inline" onsubmit="event.preventDefault(); alert('Chức năng tìm kiếm đang được xây dựng!');">
             <div class="input-group">
-                <input type="text" class="form-control" size="50" placeholder="Tìm kiếm cọ vẽ, màu nước, sổ sketch..." required>
+                <input type="text" class="form-control" size="50" placeholder="Tìm kiếm cọ vẽ, màu nước, sổ sketch..."
+                    required>
                 <div class="input-group-btn">
                     <button type="submit" class="btn btn-danger">TÌM KIẾM</button>
                 </div>
@@ -51,11 +71,14 @@
             <div class="col-sm-8">
                 <h2>Về Họa cụ ArtDoor</h2>
                 <h4>Nơi chắp cánh cho những tác phẩm nghệ thuật đích thực.</h4>
-                <p>Được thành lập từ niềm đam mê hội họa bất tận, ArtDoor tự hào là hệ thống phân phối họa cụ chính hãng hàng đầu. Chúng tôi mang đến cho các bạn học sinh, sinh viên kiến trúc, mỹ thuật và các họa sĩ chuyên nghiệp những sản phẩm tốt nhất từ Holbein, Daniel Smith, Arches, Canson...</p>
+                <p>Được thành lập từ niềm đam mê hội họa bất tận, ArtDoor tự hào là hệ thống phân phối họa cụ chính hãng
+                    hàng đầu. Chúng tôi mang đến cho các bạn học sinh, sinh viên kiến trúc, mỹ thuật và các họa sĩ
+                    chuyên nghiệp những sản phẩm tốt nhất từ Holbein, Daniel Smith, Arches, Canson...</p>
                 <br><a href="about.html" class="btn btn-warning btn-lg">Xem chi tiết lịch sử cửa hàng</a>
             </div>
             <div class="col-sm-4">
-                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=400" class="img-responsive img-thumbnail" alt="Art Workshop">
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=400"
+                    class="img-responsive img-thumbnail" alt="Art Workshop">
             </div>
         </div>
     </div>
@@ -119,7 +142,7 @@
                 </div>
             </div>
         </div><br>
-        
+
         <h2>ĐÁNH GIÁ TỪ HỌA SĨ</h2>
         <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -128,10 +151,12 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <h4>"Họa cụ mua ở ArtDoor đóng gói cực kỳ cẩn thận, cọ vẽ không bị dập lông khi ship xa!"<br><span style="font-style:normal;">- Họa sĩ Nguyễn Lâm, Hội Mỹ Thuật TP.HCM</span></h4>
+                    <h4>"Họa cụ mua ở ArtDoor đóng gói cực kỳ cẩn thận, cọ vẽ không bị dập lông khi ship xa!"<br><span
+                            style="font-style:normal;">- Họa sĩ Nguyễn Lâm, Hội Mỹ Thuật TP.HCM</span></h4>
                 </div>
                 <div class="item">
-                    <h4>"Giấy Arches chuẩn chính hãng, loang màu rất êm. Sẽ tiếp tục ủng hộ shop dài dài."<br><span style="font-style:normal;">- Bạn Minh Trang, Sinh viên Đại học Kiến Trúc</span></h4>
+                    <h4>"Giấy Arches chuẩn chính hãng, loang màu rất êm. Sẽ tiếp tục ủng hộ shop dài dài."<br><span
+                            style="font-style:normal;">- Bạn Minh Trang, Sinh viên Đại học Kiến Trúc</span></h4>
                 </div>
             </div>
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -152,7 +177,9 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="panel panel-default text-center">
-                    <div class="panel-heading"><h1>Combo Nhập Môn</h1></div>
+                    <div class="panel-heading">
+                        <h1>Combo Nhập Môn</h1>
+                    </div>
                     <div class="panel-body">
                         <p><strong>1</strong> Hộp Màu Nước 12 Màu Basic</p>
                         <p><strong>2</strong> Cọ Tỉa Lông Nhân Tạo</p>
@@ -160,13 +187,16 @@
                     </div>
                     <div class="panel-footer">
                         <h3>350.000đ</h3>
-                        <button class="btn btn-lg btn-block btn-warning btn-order" data-toggle="modal" data-target="#orderModal" data-service="basic">Đăng ký mua</button>
+                        <button class="btn btn-lg btn-block btn-warning btn-order" data-toggle="modal"
+                            data-target="#orderModal" data-service="basic">Đăng ký mua</button>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="panel panel-primary text-center">
-                    <div class="panel-heading"><h1>Combo Bán Chuyên</h1></div>
+                    <div class="panel-heading">
+                        <h1>Combo Bán Chuyên</h1>
+                    </div>
                     <div class="panel-body">
                         <p><strong>1</strong> Hộp Màu Bánh Nước 24 Màu</p>
                         <p><strong>4</strong> Cọ Ngậm Nước Cao Cấp</p>
@@ -174,13 +204,16 @@
                     </div>
                     <div class="panel-footer">
                         <h3>950.000đ</h3>
-                        <button class="btn btn-lg btn-block btn-warning btn-order" data-toggle="modal" data-target="#orderModal" data-service="pro">Đăng ký mua</button>
+                        <button class="btn btn-lg btn-block btn-warning btn-order" data-toggle="modal"
+                            data-target="#orderModal" data-service="pro">Đăng ký mua</button>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="panel panel-default text-center">
-                    <div class="panel-heading"><h1>Combo Cao Cấp</h1></div>
+                    <div class="panel-heading">
+                        <h1>Combo Cao Cấp</h1>
+                    </div>
                     <div class="panel-body">
                         <p><strong>1</strong> Bộ Màu Tuýp Holbein Artist</p>
                         <p><strong>5</strong> Cọ Vẽ Lông Thú Handmade</p>
@@ -188,7 +221,8 @@
                     </div>
                     <div class="panel-footer">
                         <h3>2.450.000đ</h3>
-                        <button class="btn btn-lg btn-block btn-warning btn-order" data-toggle="modal" data-target="#orderModal" data-service="master">Đăng ký mua</button>
+                        <button class="btn btn-lg btn-block btn-warning btn-order" data-toggle="modal"
+                            data-target="#orderModal" data-service="master">Đăng ký mua</button>
                     </div>
                 </div>
             </div>
@@ -210,7 +244,8 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="cName">Họ Tên:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="cName" placeholder="Nhập họ tên (Không chứa chữ số)">
+                            <input type="text" class="form-control" id="cName"
+                                placeholder="Nhập họ tên (Không chứa chữ số)">
                             <span class="text-danger" id="errName"></span>
                         </div>
                     </div>
@@ -224,7 +259,8 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="cMessage">Nội Dung:</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" id="cMessage" rows="4" placeholder="Nội dung lời nhắn (tối thiểu 20 ký tự)"></textarea>
+                            <textarea class="form-control" id="cMessage" rows="4"
+                                placeholder="Nội dung lời nhắn (tối thiểu 20 ký tự)"></textarea>
                             <span class="text-danger" id="errMessage"></span>
                         </div>
                     </div>
@@ -244,7 +280,7 @@
         </a><br><br>
         <p>Bản quyền thuộc về © 2026 <strong>ArtDoor Hoacu</strong> - Hệ thống phân phối họa cụ toàn quốc.</p>
         <p>Hệ thống cửa hàng:<br>
-        CS1: Nguyễn Gia Trí, Bình Thạnh, TP.HCM | CS2: Trần Quốc Hoàn, Cầu Giấy, Hà Nội</p>
+            CS1: Nguyễn Gia Trí, Bình Thạnh, TP.HCM | CS2: Trần Quốc Hoàn, Cầu Giấy, Hà Nội</p>
         <div>
             <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Youtube</a>
         </div>
@@ -275,9 +311,12 @@
                         <div class="form-group">
                             <label>Chọn các combo muốn lấy (Có thể chọn nhiều):</label>
                             <span class="text-danger" id="errPCheckbox" style="display:block;"></span>
-                            <div class="checkbox"><label><input type="checkbox" name="serviceCb" value="basic" id="cb-basic"> Combo Nhập Môn</label></div>
-                            <div class="checkbox"><label><input type="checkbox" name="serviceCb" value="pro" id="cb-pro"> Combo Bán Chuyên</label></div>
-                            <div class="checkbox"><label><input type="checkbox" name="serviceCb" value="master" id="cb-master"> Combo Cao Cấp</label></div>
+                            <div class="checkbox"><label><input type="checkbox" name="serviceCb" value="basic"
+                                        id="cb-basic"> Combo Nhập Môn</label></div>
+                            <div class="checkbox"><label><input type="checkbox" name="serviceCb" value="pro"
+                                        id="cb-pro"> Combo Bán Chuyên</label></div>
+                            <div class="checkbox"><label><input type="checkbox" name="serviceCb" value="master"
+                                        id="cb-master"> Combo Cao Cấp</label></div>
                         </div>
                         <div class="form-group">
                             <label for="pRequest">Ghi chú / Yêu cầu gói quà riêng:</label>
@@ -294,35 +333,38 @@
     </div>
 
     <div id="loginModal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Đăng Nhập Thành Viên</h4>
-            </div>
-            <div class="modal-body">
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label>Tài khoản:</label>
-                        <input type="text" class="form-control" id="loginUser" required placeholder="Tên đăng nhập hoặc Email">
-                    </div>
-                    <div class="form-group">
-                        <label>Mật khẩu:</label>
-                        <input type="password" class="form-control" id="loginPass" required placeholder="******">
-                    </div>
-                    <button type="submit" class="btn btn-danger btn-block">Đăng Nhập</button>
-                    
-                    <div class="text-center" style="margin-top: 15px;">
-                        Chưa có tài khoản? <a href="register.html" style="color: #e65100; font-weight: bold;">Đăng ký ngay</a>
-                    </div>
-                </form>
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Đăng Nhập Thành Viên</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label>Tài khoản:</label>
+                            <input type="text" class="form-control" id="loginUser" required
+                                placeholder="Tên đăng nhập hoặc Email">
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu:</label>
+                            <input type="password" class="form-control" id="loginPass" required placeholder="******">
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-block">Đăng Nhập</button>
+
+                        <div class="text-center" style="margin-top: 15px;">
+                            Chưa có tài khoản? <a href="register.html" style="color: #e65100; font-weight: bold;">Đăng
+                                ký ngay</a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

@@ -56,7 +56,6 @@
 
         // NẾU FORM HỢP LỆ -> TIẾN HÀNH LƯU VÀO DATABASE GIẢ LẬP
         if(isValid) {
-            // Đọc mảng Users từ LocalStorage ra, nếu chưa có thì khởi tạo mảng rỗng
             var dbUsers = JSON.parse(localStorage.getItem('DATABASE_USERS')) || [];
 
             // Kiểm tra xem trùng tên tài khoản không
@@ -74,13 +73,9 @@
                 createdAt: new Date().toISOString()
             };
 
-            // Thực hiện nạp vào mảng dữ liệu
             dbUsers.push(newRecord);
             localStorage.setItem('DATABASE_USERS', JSON.stringify(dbUsers));
 
-            /* Mẹo dành cho công cụ Prettier SQL VSCode:
-               Bạn có thể bôi đen đoạn comment SQL dưới đây rồi chạy format
-            */
             //-- PRETTIER-SQL-FORMAT-DEMO
             //   INSERT INTO Users (username, email, password) 
             //   VALUES (username, email, password);
@@ -91,31 +86,60 @@
     });
 
     // ==========================================
-    // CHỨC NĂNG NÂNG CAO: ĐĂNG NHẬP ĐỐI CHIẾU DATABASE
+    // CHỨC NĂNG NÂNG CAO: ĐĂNG NHẬP ĐỐI CHIẾU DATABASE VÀ CẬP NHẬT TRẠNG THÁI
     // ==========================================
     $('#loginForm').on('submit', function(e) {
         e.preventDefault();
         var userLogin = $('#loginUser').val().trim();
         var passLogin = $('#loginPass').val();
 
-        // Lấy dữ liệu mảng từ "Database" trình duyệt lên
         var dbUsers = JSON.parse(localStorage.getItem('DATABASE_USERS')) || [];
-
-        // Tìm kiếm bản ghi trùng khớp
         var accountFound = dbUsers.find(user => user.username === userLogin && user.password === passLogin);
 
-        // Đoạn mẫu giả lập log để kích hoạt hiển thị của Prettier SQL extension trong file script
         console.log(`-- Executing query: SELECT * FROM Users WHERE username = '${userLogin}'`);
 
-        // Tài khoản admin cứng dự phòng để test nhanh
         if (userLogin === "admin" && passLogin === "123456") {
             alert("Đăng nhập quyền Quản Trị Viên hệ thống!");
+            localStorage.setItem('CURRENT_USER', 'admin'); // Lưu trạng thái đăng nhập admin
+            checkLoginStatus(); // Cập nhật lại thanh menu ngay lập tức
             $('#loginModal').modal('hide');
         } else if (accountFound) {
             alert("Đăng nhập thành công! Chào mừng thành viên: " + accountFound.username);
+            localStorage.setItem('CURRENT_USER', accountFound.username); // Lưu trạng thái đăng nhập user
+            checkLoginStatus(); // Cập nhật lại thanh menu ngay lập tức
             $('#loginModal').modal('hide');
         } else {
             alert("Sai tài khoản hoặc mật khẩu! Dữ liệu không khớp với bất kỳ tài khoản nào.");
         }
         this.reset();
+    });
+
+    // ==========================================
+    // HÀM TỰ ĐỘNG KIỂM TRA TRẠNG THÁI ĐĂNG NHẬP ĐỂ ĐỔI GIAO DIỆN MENU
+    // ==========================================
+    function checkLoginStatus() {
+        var currentUser = localStorage.getItem('CURRENT_USER');
+        if (currentUser) {
+            // Đang có người dùng đăng nhập: Ẩn nút "Đăng nhập" thô, hiện menu dropdown chào mừng
+            $('#nav-guest').hide();
+            $('#nav-user').show();
+            $('#user-display-name').text(currentUser);
+        } else {
+            // Không có ai đăng nhập hoặc vừa đăng xuất: Hiện lại nút "Đăng nhập"
+            $('#nav-guest').show();
+            $('#nav-user').hide();
+        }
+    }
+
+    // Chạy kích hoạt hàm này ngay khi trình duyệt vừa load xong file JS
+    checkLoginStatus();
+
+    // SỰ KIỆN KHI NGƯỜI DÙNG NHẤN NÚT ĐĂNG XUẤT TÀI KHOẢN
+    $('#btn-logout').on('click', function(e) {
+        e.preventDefault();
+        if(confirm("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống ArtDoor không?")) {
+            localStorage.removeItem('CURRENT_USER'); // Xóa sạch dấu vết session cũ
+            alert("Đã đăng xuất tài khoản thành công!");
+            window.location.reload(); // Tải lại trang để cập nhật menu sạch sẽ về trạng thái ban đầu
+        }
     });
