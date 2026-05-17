@@ -294,28 +294,32 @@
     </div>
 
     <div id="loginModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Đăng Nhập Thành Viên</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="loginForm" onsubmit="event.preventDefault(); alert('Đăng nhập thành công hệ thống ArtDoor!'); $('#loginModal').modal('hide');">
-                        <div class="form-group">
-                            <label>Tài khoản:</label>
-                            <input type="text" class="form-control" required placeholder="Tên đăng nhập hoặc Email">
-                        </div>
-                        <div class="form-group">
-                            <label>Mật khẩu:</label>
-                            <input type="password" class="form-control" required placeholder="******">
-                        </div>
-                        <button type="submit" class="btn btn-danger btn-block">Đăng Nhập</button>
-                    </form>
-                </div>
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Đăng Nhập Thành Viên</h4>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Tài khoản:</label>
+                        <input type="text" class="form-control" id="loginUser" required placeholder="Tên đăng nhập hoặc Email">
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu:</label>
+                        <input type="password" class="form-control" id="loginPass" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-block">Đăng Nhập</button>
+                    
+                    <div class="text-center" style="margin-top: 15px;">
+                        Chưa có tài khoản? <a href="register.html" style="color: #e65100; font-weight: bold;">Đăng ký ngay</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

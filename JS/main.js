@@ -1,117 +1,121 @@
-// Khai báo biến toàn cục quản lý số lượng sản phẩm giỏ hàng (Yêu cầu nâng cao)
-var cartCount = 0;
-
-function addToCart() {
-    cartCount++;
-    // Cập nhật số lượng lên badge của menu
-    $('#cart-badge').text(cartCount);
-    alert("Đã thêm sản phẩm họa cụ vào giỏ hàng thành công!");
-}
-
-$(document).ready(function(){
-    // 1. CHỨC NĂNG: Smooth Scrolling (Cuộn mượt khi nhấn menu)
-    $("nav a[href^='#'], footer a[href^='#']").on('click', function(event) {
-        if (this.hash !== "") {
-            event.preventDefault();
-            var hash = this.hash;
-            $('html, body').animate({
-                scrollTop: $(hash).offset().top
-            }, 800, function(){
-                window.location.hash = hash;
-            });
-        }
-    });
-
-    // 2. CHỨC NĂNG: Điều khiển Modal Bảng Giá Combo
-    $('.btn-order').on('click', function() {
-        // Reset sạch các lựa chọn cũ
-        $('input[name="serviceCb"]').prop('checked', false);
-        // Đọc dữ liệu định danh từ nút bấm được kích hoạt
-        var targetCombo = $(this).data('service');
-        // Kích hoạt tích sẵn vào checkbox tương ứng trong form popup
-        $('#cb-' + targetCombo).prop('checked', true);
-    });
-
-    // RÀNG BUỘC KIỂM TRA (VALIDATION) FORM ĐẶT MUA TRÊN MODAL
-    $('#pricingForm').on('submit', function(e) {
+// ==========================================
+    // CHỨC NĂNG NÂNG CAO: ĐĂNG KÝ CÓ LƯU TRỮ VÀO "DATABASE LOCAL"
+    // ==========================================
+    $('#registerForm').on('submit', function(e) {
         e.preventDefault();
         var isValid = true;
 
-        var name = $('#pName').val().trim();
-        var phone = $('#pPhone').val().trim();
-        var email = $('#pEmail').val().trim();
-        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        var username = $('#regUser').val().trim();
+        var email = $('#regEmail').val().trim();
+        var password = $('#regPass').val();
+        var confirmPassword = $('#regConfirmPass').val();
 
-        // Bắt buộc nhập đầy đủ tất cả dữ liệu chữ
-        if(name === "" || phone === "" || email === "") {
-            alert("Vui lòng không để trống bất kỳ trường thông tin liên lạc nào!");
-            isValid = false;
-            return;
-        }
-
-        // Kiểm tra định dạng Email hợp lệ
-        if (!emailRegex.test(email)) {
-            $('#errPEmail').text("Định dạng email của bạn nhập không hợp lệ (Ví dụ: abc@gmail.com)!");
+        // 1. Kiểm tra tài khoản (User)
+        if(username.length < 5) {
+            $('#errRegUser').text("Tên đăng nhập bắt buộc phải từ 5 ký tự trở lên!");
             isValid = false;
         } else {
-            $('#errPEmail').text("");
+            $('#errRegUser').text("");
         }
 
-        // Bắt buộc chọn ít nhất 1 hộp dịch vụ họa cụ
-        if ($('input[name="serviceCb"]:checked').length === 0) {
-            $('#errPCheckbox').text("Bắt buộc phải tích chọn ít nhất một Combo sản phẩm bạn muốn đặt mua!");
-            isValid = false;
-        } else {
-            $('#errPCheckbox').text("");
-        }
-
-        if (isValid) {
-            alert("Hệ thống ArtDoor đã ghi nhận đơn đặt hàng của bạn! Chúng tôi sẽ gọi lại hỗ trợ ngay.");
-            $('#orderModal').modal('hide');
-            this.reset();
-        }
-    });
-
-    // 3. RÀNG BUỘC KIỂM TRA (VALIDATION) FORM LIÊN HỆ DƯỚI ĐÁY TRANG
-    $('#contactForm').on('submit', function(e) {
-        e.preventDefault();
-        var isValid = true;
-
-        // Tên: Không chứa số
-        var name = $('#cName').val().trim();
-        var containsNumber = /\d/; 
-        if(name === "" || containsNumber.test(name)) {
-            $('#errName').text("Họ tên không được rỗng và tuyệt đối không được chứa chữ số!");
-            isValid = false;
-        } else {
-            $('#errName').text("");
-        }
-
-        // Email: Bắt buộc
-        var email = $('#cEmail').val().trim();
+        // 2. Kiểm tra Email bằng Regex
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if(email === "") {
-            $('#errEmail').text("Vui lòng nhập địa chỉ Email bắt buộc!");
+            $('#errRegEmail').text("Vui lòng không để trống ô Email!");
             isValid = false;
-        } else if (!emailRegex.test(email)) {
-            $('#errEmail').text("Email không đúng định dạng!");
-            isValid = false;
-        } else {
-            $('#errEmail').text("");
-        }
-
-        // Tin nhắn: Phải dài từ 20 kí tự trở lên
-        var msg = $('#cMessage').val().trim();
-        if(msg.length < 20) {
-            $('#errMessage').text("Nội dung tin nhắn gửi tới ArtDoor phải dài tối thiểu từ 20 ký tự trở lên để đảm bảo rõ nghĩa!");
+        } else if(!emailRegex.test(email)) {
+            $('#errRegEmail').text("Định dạng Email không hợp lệ (Ví dụ đúng: artdoor@gmail.com)!");
             isValid = false;
         } else {
-            $('#errMessage').text("");
+            $('#errRegEmail').text("");
         }
 
+        // 3. Kiểm tra Mật khẩu
+        if(password.length < 6) {
+            $('#errRegPass').text("Mật khẩu bảo mật phải có độ dài ít nhất là 6 ký tự!");
+            isValid = false;
+        } else {
+            $('#errRegPass').text("");
+        }
+
+        // 4. Kiểm tra Mật khẩu nhập lại
+        if(confirmPassword !== password || confirmPassword === "") {
+            $('#errRegConfirmPass').text("Xác nhận mật khẩu chưa khớp hoàn toàn với mật khẩu đã nhập ở trên!");
+            isValid = false;
+        } else {
+            $('#errRegConfirmPass').text("");
+        }
+
+        // 5. Kiểm tra điều khoản
+        if(!$('#regTerm').is(':checked')) {
+            $('#errRegTerm').text("Bạn phải tích chọn đồng ý với điều khoản dịch vụ để tiếp tục!");
+            isValid = false;
+        } else {
+            $('#errRegTerm').text("");
+        }
+
+        // NẾU FORM HỢP LỆ -> TIẾN HÀNH LƯU VÀO DATABASE GIẢ LẬP
         if(isValid) {
-            alert("Lời nhắn phản hồi của bạn đã gửi thành công!");
-            this.reset();
+            // Đọc mảng Users từ LocalStorage ra, nếu chưa có thì khởi tạo mảng rỗng
+            var dbUsers = JSON.parse(localStorage.getItem('DATABASE_USERS')) || [];
+
+            // Kiểm tra xem trùng tên tài khoản không
+            var isExist = dbUsers.some(user => user.username === username);
+            if(isExist) {
+                $('#errRegUser').text("Tên tài khoản này đã có người sử dụng trong Database!");
+                return;
+            }
+
+            // Tạo cấu trúc một bản ghi (Record) dữ liệu mới
+            var newRecord = {
+                username: username,
+                email: email,
+                password: password,
+                createdAt: new Date().toISOString()
+            };
+
+            // Thực hiện nạp vào mảng dữ liệu
+            dbUsers.push(newRecord);
+            localStorage.setItem('DATABASE_USERS', JSON.stringify(dbUsers));
+
+            /* Mẹo dành cho công cụ Prettier SQL VSCode:
+               Bạn có thể bôi đen đoạn comment SQL dưới đây rồi chạy format
+            */
+            //-- PRETTIER-SQL-FORMAT-DEMO
+            //   INSERT INTO Users (username, email, password) 
+            //   VALUES (username, email, password);
+
+            alert("Đăng ký thành công! Dữ liệu tài khoản đã được nạp vào hệ thống.");
+            window.location.href = "index.html"; 
         }
     });
-});
+
+    // ==========================================
+    // CHỨC NĂNG NÂNG CAO: ĐĂNG NHẬP ĐỐI CHIẾU DATABASE
+    // ==========================================
+    $('#loginForm').on('submit', function(e) {
+        e.preventDefault();
+        var userLogin = $('#loginUser').val().trim();
+        var passLogin = $('#loginPass').val();
+
+        // Lấy dữ liệu mảng từ "Database" trình duyệt lên
+        var dbUsers = JSON.parse(localStorage.getItem('DATABASE_USERS')) || [];
+
+        // Tìm kiếm bản ghi trùng khớp
+        var accountFound = dbUsers.find(user => user.username === userLogin && user.password === passLogin);
+
+        // Đoạn mẫu giả lập log để kích hoạt hiển thị của Prettier SQL extension trong file script
+        console.log(`-- Executing query: SELECT * FROM Users WHERE username = '${userLogin}'`);
+
+        // Tài khoản admin cứng dự phòng để test nhanh
+        if (userLogin === "admin" && passLogin === "123456") {
+            alert("Đăng nhập quyền Quản Trị Viên hệ thống!");
+            $('#loginModal').modal('hide');
+        } else if (accountFound) {
+            alert("Đăng nhập thành công! Chào mừng thành viên: " + accountFound.username);
+            $('#loginModal').modal('hide');
+        } else {
+            alert("Sai tài khoản hoặc mật khẩu! Dữ liệu không khớp với bất kỳ tài khoản nào.");
+        }
+        this.reset();
+    });
