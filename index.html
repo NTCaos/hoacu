@@ -19,14 +19,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#myPage">ARTDOOR</a>
+                <a class="navbar-brand" href="index.html">ARTDOOR</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#about">GIỚI THIỆU</a></li>
-                    
+                    <li><a href="index.html">TRANG CHỦ</a></li>
+
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">
                             DANH MỤC SẢN PHẨM <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" style="background-color: #2d2d30;">
@@ -40,24 +41,29 @@
                     <li><a href="#pricing">BẢNG GIÁ COMBO</a></li>
                     <li><a href="#contact">LIÊN HỆ</a></li>
 
-                    <li id="nav-guest"><a href="#" data-toggle="modal" data-target="#loginModal"><span
-                                class="glyphicon glyphicon-user"></span> ĐĂNG NHẬP</a></li>
+                    <li id="nav-guest"><a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> ĐĂNG NHẬP</a></li>
 
                     <li id="nav-user" class="dropdown" style="display: none;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">
-                            <span class="glyphicon glyphicon-user"></span> Chào, <span id="user-display-name">Thành
-                                viên</span> <span class="caret"></span>
+                            <span class="glyphicon glyphicon-user"></span> Chào, <span id="user-display-name">Thành viên</span> <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" style="background-color: #2d2d30;">
-                            <li><a href="#" id="btn-logout" style="color: #fff !important; padding: 10px 20px;">Đăng
-                                    xuất tài khoản</a></li>
+                            <li><a href="#" id="btn-logout" style="color: #fff !important; padding: 10px 20px;">Đăng xuất tài khoản</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="#" onclick="alert('Giỏ hàng hiện tại có ' + cartCount + ' sản phẩm!')"><span
-                                class="glyphicon glyphicon-shopping-cart"></span> GIỎ HÀNG (<span
-                                id="cart-badge">0</span>)</a></li>
+                    <li>
+                        <a href="cart.html">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> GIỎ HÀNG (<span id="cart-badge">0</span>)
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="checkout.html">
+                            <span class="glyphicon glyphicon-list-alt"></span> THEO DÕI ĐƠN HÀNG
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -67,12 +73,14 @@
         <h1>ARTDOOR SHOP</h1>
         <p>Chuyên kinh doanh họa cụ, màu vẽ, bút cọ, giấy vẽ mỹ thuật cao cấp</p>
         <form class="form-inline" onsubmit="event.preventDefault(); alert('Chức năng tìm kiếm đang được xây dựng!');">
-            <div class="input-group">
-                <input type="text" class="form-control" size="50" placeholder="Tìm kiếm cọ vẽ, màu nước, sổ sketch..."
-                    required>
-                <div class="input-group-btn">
-                    <button type="submit" class="btn btn-danger">TÌM KIẾM</button>
-                </div>
+            <div class="input-group" style="max-width: 450px; margin: 20px auto;">
+                <input type="text" id="search-input" class="form-control" placeholder="Bạn cần tìm...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" onclick="handleSearch()"
+                        style="background-color: #f7a4b0; color: white;">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
             </div>
         </form>
     </div>
@@ -104,21 +112,21 @@
                 <h4>MÀU NƯỚC CHUYÊN NGHIỆP</h4>
                 <p>Màu tuýp, màu bánh mật độ hạt sắc tố cực cao, bền màu tuyệt đối theo thời gian.</p>
                 <p><a href="category-mau.html" class="btn btn-default">Xem chi tiết nhóm màu</a></p>
-                <button class="btn btn-danger" onclick="addToCart()">Chọn Mua Nhanh</button>
+                <button class="btn btn-danger" onclick="addToCartDetailed('SP-001', 'Màu Nước Tiêu Biểu Holbein', 660000, 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=100')">Chọn Mua Nhanh</button>
             </div>
             <div class="col-sm-4">
                 <span class="glyphicon glyphicon-pencil logo-small"></span>
                 <h4>CỌ VẼ THỦ CÔNG</h4>
                 <p>Đầy đủ các dáng cọ tỉa, cọ flat, cọ ngậm nước tốt làm hoàn toàn từ lông thú tự nhiên.</p>
                 <p><a href="category-co.html" class="btn btn-default">Xem chi tiết nhóm cọ</a></p>
-                <button class="btn btn-danger" onclick="addToCart()">Chọn Mua Nhanh</button>
+                <button class="btn btn-danger" onclick="addToCartDetailed('SP-002', 'Cọ Vẽ Thủ Công Cao Cấp', 150000, 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=100')">Chọn Mua Nhanh</button>
             </div>
             <div class="col-sm-4">
                 <span class="glyphicon glyphicon-book logo-small"></span>
                 <h4>GIẤY VÀ SỔ VẼ CAO CẤP</h4>
                 <p>Giấy 100% Cotton định lượng 300gsm vân Cold Press, Hot Press chịu nước cực tốt.</p>
                 <p><a href="category-giay.html" class="btn btn-default">Xem chi tiết nhóm giấy</a></p>
-                <button class="btn btn-danger" onclick="addToCart()">Chọn Mua Nhanh</button>
+                <button class="btn btn-danger" onclick="addToCartDetailed('SP-003', 'Sổ Vẽ Arches 300gsm', 280000, 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=100')">Chọn Mua Nhanh</button>
             </div>
         </div>
     </div>
@@ -366,8 +374,7 @@
                         <button type="submit" class="btn btn-danger btn-block">Đăng Nhập</button>
 
                         <div class="text-center" style="margin-top: 15px;">
-                            Chưa có tài khoản? <a href="register.html" style="color: #e65100; font-weight: bold;">Đăng
-                                ký ngay</a>
+                            Chưa có tài khoản? <a href="register.html" style="color: #e65100; font-weight: bold;">Đăng ký ngay</a>
                         </div>
                     </form>
                 </div>
@@ -377,6 +384,13 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            if (typeof updateCartBadge === 'function') {
+                updateCartBadge();
+            }
+        });
+    </script>
     <script src="js/main.js"></script>
 </body>
 

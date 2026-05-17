@@ -1,0 +1,135 @@
+<div class="container" style="margin-top: 40px; margin-bottom: 60px;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: #f7a4b0; color: white;"><strong>THÔNG TIN GIAO HÀNG & THANH TOÁN</strong></div>
+                <div class="panel-body">
+                    <form id="checkout-form" onsubmit="processOrder(event)">
+                        <div class="form-group">
+                            <label>Họ và tên người nhận *</label>
+                            <input type="text" id="cus-name" class="form-control" required placeholder="Nguyễn Văn A">
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại *</label>
+                            <input type="tel" id="cus-phone" class="form-control" required placeholder="0987654321">
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ nhận hàng *</label>
+                            <textarea id="cus-address" class="form-control" rows="2" required placeholder="Số nhà, tên đường, phường/xã, quận/huyện..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Phương thức thanh toán *</label>
+                            <div class="radio">
+                                <label><input type="radio" name="payment-method" value="COD" checked> Thanh toán khi nhận hàng (COD)</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="payment-method" value="MOMO"> Chuyển khoản qua Ví MoMo</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="payment-method" value="BANK"> Chuyển khoản ngân hàng (Internet Banking)</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-block btn-lg" style="margin-top: 20px;">HOÀN TẤT ĐẶT HÀNG</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading"><strong>LỊCH SỬ ĐƠN HÀNG & TIẾN TRÌNH THEO DÕI</strong></div>
+                <div class="panel-body" id="order-history-container">
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    renderOrderHistory();
+});
+
+// Xử lý khi bấm nút "HOÀN TẤT ĐẶT HÀNG"
+function processOrder(e) {
+    e.preventDefault(); // Chặn hành vi load lại trang mặc định của form
+    
+    var cart = JSON.parse(localStorage.getItem('ARTDOOR_CART')) || [];
+    if (cart.length === 0) {
+        alert("Giỏ hàng của bạn đang trống, không thể thanh toán!");
+        return;
+    }
+
+    // Lấy thông tin từ Form
+    var name = document.getElementById('cus-name').value;
+    var phone = document.getElementById('cus-phone').value;
+    var address = document.getElementById('cus-address').value;
+    var method = document.querySelector('input[name="payment-method"]:checked').value;
+    
+    // Tính tổng tiền đơn hàng
+    var total = 0;
+    cart.forEach(item => total += (item.price * item.quantity));
+
+    // Tạo cấu trúc một Đơn hàng mới
+    var newOrder = {
+        orderId: 'ART-' + Math.floor(100000 + Math.random() * 900000), // Tạo mã đơn ngẫu nhiên
+        date: new Date().toLocaleString('vi-VN'),
+        customer: { name: name, phone: phone, address: address },
+        paymentMethod: method,
+        items: cart,
+        totalPrice: total,
+        status: "Đang xử lý" // Các trạng thái: Đang xử lý -> Đang giao hàng -> Đã hoàn tất thành công
+    };
+
+    // Lưu vào danh sách Lịch sử đơn hàng trong LocalStorage
+    var history = JSON.parse(localStorage.getItem('ARTDOOR_HISTORY')) || [];
+    history.unshift(newOrder); // Đẩy đơn hàng mới nhất lên đầu danh sách
+    localStorage.setItem('ARTDOOR_HISTORY', JSON.stringify(history));
+
+    // Xóa giỏ hàng hiện tại sau khi đặt hàng thành công
+    localStorage.removeItem('ARTDOOR_CART');
+    if(typeof updateCartBadge === 'function') updateCartBadge();
+
+    alert("🎉 Thanh toán thành công! Đơn hàng của bạn đã được hệ thống ghi nhận.");
+    
+    // Reset lại Form nhập liệu và vẽ lại lịch sử đơn hàng
+    document.getElementById('checkout-form').reset();
+    renderOrderHistory();
+}
+
+// Hàm vẽ danh sách lịch sử đơn hàng và tiến trình quá trình
+function renderOrderHistory() {
+    var history = JSON.parse(localStorage.getItem('ARTDOOR_HISTORY')) || [];
+    var html = "";
+
+    if (history.length === 0) {
+        html = '<p class="text-muted text-center" style="padding: 20px 0;">Bạn chưa có lịch sử mua hàng nào tại hệ thống!</p>';
+    } else {
+        history.forEach(function(order) {
+            // Xác định màu sắc hiển thị cho các trạng thái đơn hàng
+            var statusLabelClass = "label-warning";
+            if(order.status === "Đang giao hàng") statusLabelClass = "label-primary";
+            if(order.status === "Đã thanh toán thành công") statusLabelClass = "label-success";
+
+            html += '<div class="well well-sm" style="background-color: #fff; margin-bottom: 20px; border-left: 4px solid #f7a4b0;">' +
+                        '<p><strong>Mã đơn hàng:</strong> <span class="text-danger">' + order.orderId + '</span></p>' +
+                        '<p><strong>Thời gian gian:</strong> ' + order.date + '</p>' +
+                        '<p><strong>Trạng thái tiến trình:</strong> <span class="label ' + statusLabelClass + '">' + order.status + '</span></p>' +
+                        '<p><strong>Tổng tiền:</strong> <strong style="color: #d9534f;">' + order.totalPrice.toLocaleString('vi-VN') + 'đ</strong> ('+ order.paymentMethod +')</p>' +
+                        '<details style="margin-top: 5px; cursor: pointer;">' +
+                            '<summary style="color: #337ab7; font-size: 13px;">Xem chi tiết sản phẩm mua</summary>' +
+                            '<ul style="margin-top: 5px; padding-left: 20px; font-size:12px; color:#555;">';
+            
+            order.items.forEach(function(item) {
+                html += '<li>' + item.name + ' x ' + item.quantity + '</li>';
+            });
+            
+            html +=         '</ul>' +
+                            '<p style="font-size: 11px; margin-top:5px; border-top: 1px dashed #ccc; padding-top:5px; color:#777;">Giao tới: ' + order.customer.name + ' - ' + order.customer.phone + ' ('+ order.customer.address +')</p>' +
+                        '</details>' +
+                    '</div>';
+        });
+    }
+    $('#order-history-container').html(html);
+}
+</script>
