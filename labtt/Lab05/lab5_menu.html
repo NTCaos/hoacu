@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 05 - Bài 1: Menu</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        ul li a {
+            display: block;
+            text-decoration: none;
+            padding: 10px 15px;
+            color: #333;
+        }
+
+        .menu-ngang {
+            background-color: #7fffd4; 
+            overflow: hidden;
+            margin-bottom: 30px;
+            display: block;
+        }
+        .menu-ngang li {
+            float: left;
+        }
+        .menu-ngang li:hover {
+            background-color: yellow !important; 
+            border-radius: 5px;                  
+        }
+        .menu-ngang li:hover a {
+            font-weight: bold;                   
+            color: #000;
+        }
+
+        .menu-doc {
+            width: 250px;
+            background-color: #3498db; 
+        }
+        .menu-doc li {
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        .menu-doc li a {
+            color: #fff;
+        }
+        .menu-doc li:hover {
+            filter: brightness(130%); 
+        }
+        .menu-doc li:hover a {
+            font-style: italic;                  
+        }
+    </style>
+</head>
+<body>
+ 
+    <ul class="menu-ngang">
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#">Giới thiệu</a></li>
+        <li><a href="#">Sản phẩm</a></li>
+        <li><a href="#">Dịch vụ</a></li>
+        <li><a href="#">Liên hệ</a></li>
+    </ul>
+
+    <ul class="menu-doc">
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#">Giới thiệu</a></li>
+        <li><a href="#">Sản phẩm</a></li>
+        <li><a href="#">Dịch vụ</a></li>
+        <li><a href="#">Liên hệ</a></li>
+    </ul>
+
+</body>
+</html>

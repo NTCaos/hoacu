@@ -1,0 +1,42 @@
+#footer {
+    background-color: #222;
+    padding: 40px 0;
+    color: #fff;
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: block; // Thay thế cho flex-box vì môi trường không hỗ trợ tốt
+    }
+
+    h4 {
+        color: #f39c12;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #bbb;
+    }
+
+    ul.footer-links {
+        list-style: none;
+        padding: 0;
+
+        li {
+            margin-bottom: 10px;
+
+            a {
+                color: #fff;
+                text-decoration: none;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: #3498db; 
+                }
+            }
+        }
+    }
+}

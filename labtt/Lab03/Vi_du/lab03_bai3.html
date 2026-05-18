@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>BookStore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Dancing+Script:wght@600&family=Kanit&family=Lora:wght@500;600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="path/to/fork-awesome/css/fork-awesome.min.css">
+    <link rel="stylesheet" href="styles/main.css" />
+</head>
+
+<body>
+    <div id="container">
+
+        <form name="frmthemsanpham" action="xl_lab03_bai3.php" method="post" enctype="multipart/form-data">
+            <table border="0" width="100%">
+            <tr>
+            <td colspan="2" align="center"><em>THEM SAN PHAM MOI</em></td></tr>
+            
+            
+            <tr><td>Ma San Pham:</td>
+           	<td><input type="text" name="nmProID" size="30"/></td>
+            </tr>
+            <tr><td>Ten san pham</td>
+           	<td><input type="text" name=" nmProName" size="30"/></td>
+            </tr>
+            <tr><td>Hinh anh</td>
+           	<td><input type="file" name=" nmProImg" size="50"/></td>
+            </tr>
+            <tr><td>Hang san xuat</td>
+           	<td><select name="nmMan"><option>Thien long</option></select>
+                
+            </tr>
+            <tr><td>Kich thuoc</td>
+              <td>W:<input type="text" name="nmWidth" value="200"> 
+                H:<input type="text"name=" nmHeight" value="300">mm
+              </td>
+             </tr>
+            <tr><td>So trang</td>
+              <td><input type="text" name=" nmCount" size="50" /></td>
+            </tr>
+            <tr><td>Tac gia</td>
+              <td><input type="text" name="nmTacGia" size="50" /></td>
+            </tr>
+            <tr><td>Gia</td>	
+              <td><input type="text" name="nmPrice" size="50"/>
+                Mau: <input type="color" name="nmColor">
+            </td>
+            </tr>
+            <tr><td>Xuat xu</td>
+           	<td><input type="text" name="nmLive" size="50"/></td>
+            </tr>
+              <td>The loai</td>
+              <td><input type="checkbox" name="nmFunctions[]"/>Van hoc
+                <input type="checkbox" name="nmFunctions[]"/>Thieu nhi
+                <br>
+                <input type="checkbox" name="nmFunctions[]"/>Kinh te 
+                <input type="checkbox" name="nmFunctions[]" checked/>Giao khoa
+                <br>
+                <input type="checkbox" name="nmFunctions[]"/>Tam ly
+                <input type="checkbox" name="nmFunctions[]" checked/>Ngoai Ngu
+              </td>
+              <tr>
+                <td>
+                    Mo ta chi tiet:
+                </td>
+                <td>
+                    <textarea name="nmProDet">
+                        Paperback-10th
+                    </textarea>
+                </td>
+              </tr>
+
+            </tr>
+            <tr>
+              <td colspan="2" align="center"><br/><input type="submit" name="nmSubmit" value="Đăng ký" /> 
+                <input type="reset" name="nmReset" value="Xóa" /> </td>
+            </tr>
+           </table> 
+            </form>
+    </div>
+    
+</body>
+
+</html>

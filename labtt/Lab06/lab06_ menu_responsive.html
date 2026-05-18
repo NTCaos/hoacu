@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 06 - Bài 1: Menu Responsive</title>
+    <style>
+       
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+
+        
+        .navbar {
+            background-color: black; /* Màu xanh dương nhạt như trong hình mẫu */
+            overflow: hidden;
+            position: relative;
+        }
+
+       
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+  
+        .navbar a:hover {
+            background-color: #6ec6ff;
+            color: black;
+        }
+
+       
+        .navbar .icon {
+            display: none;
+        }
+
+        
+        @media screen and (max-width: 600px) {
+           
+            .navbar a:not(:first-child) {
+                display: none;
+            }
+            
+            
+            .navbar a.icon {
+                float: right;
+                display: block;
+                color: #ffffff; 
+            }
+
+            
+            .navbar.responsive {
+                position: relative;
+                background-color: #333333; 
+            }
+
+        
+            .navbar.responsive a:first-child {
+                background-color: #6ec6ff;
+                color: #333333;
+                float: none;
+                display: block;
+                text-align: left;
+            }
+
+           
+            .navbar.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+           
+            .navbar.responsive a:not(:first-child) {
+                float: none;
+                display: block;
+                text-align: left;
+                color: #ffffff; 
+                background-color: #333333;
+                border-top: 1px solid #444444; 
+                padding: 14px 20px;
+            }
+
+            
+            .navbar.responsive a:not(:first-child):hover {
+                background-color: #6ec6ff;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar" id="myNavbar">
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var x = document.getElementById("myNavbar");
+            if (x.className === "navbar") {
+                x.className += " responsive";
+            } else {
+                x.className = "navbar";
+            }
+        }
+    </script>
+
+</body>
+</html>

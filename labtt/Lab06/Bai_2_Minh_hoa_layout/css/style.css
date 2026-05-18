@@ -1,0 +1,117 @@
+body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            font-size: 16px; /* Mặc định font-size 16px */
+        }
+
+        .wrapper {
+            display: flex;
+            flex-flow: row wrap;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .wrapper > * {
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Định dạng màu nền và chiều cao cho các khối */
+        .header-flex-2 { background: tomato; }
+        .aside-1 { background: gold; min-height: 400px; }
+        .aside-2 { background: hotpink; min-height: 400px; }
+        .footer-flex-2 { background: lightgreen; }
+
+        /* Cột 2: Khối nội dung chính MAIN (Màu xanh dương) */
+        .main {
+            text-align: left;
+            background: deepskyblue;
+            min-height: 400px;
+        }
+
+        /* Responsive Image cho bức ảnh */
+        .responsive-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        /* ==========================================================================
+           MẶC ĐỊNH: GIAO DIỆN 1 CỘT (Dưới 600px)
+           ========================================================================== */
+        .header-flex-2, .aside-1, .main, .aside-2, .footer-flex-2 {
+            flex: 1 1 100%;
+        }
+
+        /* Khi co về 1 cột (dưới 600px), font chữ tự động tăng lên 20px */
+        @media screen and (max-width: 599px) {
+            body {
+                font-size: 20px;
+            }
+        }
+
+        /* ==========================================================================
+           YÊU CẦU SỬA: GIAO DIỆN 2 CỘT (Từ 600px trở lên đến dưới 1200px)
+           Sắp xếp: Header (1) -> Main Xanh (2) -> Aside 1 Vàng (3) + Aside 2 Hồng (3) -> Footer (4)
+           ========================================================================== */
+        @media screen and (min-width: 600px) {
+            .header-flex-2 {
+                flex: 1 1 100%;
+                order: 1; /* Nằm dòng đầu tiên */
+            }
+
+            .main {
+                flex: 1 1 100%;
+                order: 2; /* SỬA TẠI ĐÂY: Khối Xanh chiếm trọn 100% và nằm ngay dưới Header */
+            }
+
+            .aside-1 {
+                flex: 1 1 50%;
+                order: 3; /* Khối Vàng nằm dưới khối Xanh, chiếm nửa dòng bên trái */
+            }
+
+            .aside-2 {
+                flex: 1 1 50%;
+                order: 4; /* Khối Hồng nằm dưới khối Xanh, chiếm nửa dòng bên phải */
+            }
+
+            .footer-flex-2 {
+                flex: 1 1 100%;
+                order: 5; /* Nằm dòng cuối cùng */
+            }
+        }
+
+        /* ==========================================================================
+           GIAO DIỆN 3 CỘT (Từ 1200px trở lên)
+           Sắp xếp quay về chuẩn: Aside 1 Vàng -> Main Xanh -> Aside 2 Hồng nằm ngang hàng
+           ========================================================================== */
+        @media screen and (min-width: 1200px) {
+            .header-flex-2 {
+                flex: 1 1 100%;
+                order: 1;
+            }
+
+            .aside-1 {
+                flex: 1 0 0%;
+                order: 2; /* Nằm bên trái ngoài cùng */
+            }
+
+            .main {
+                flex: 3 0 0%;
+                order: 3; /* Nằm ở giữa, rộng gấp 3 lần */
+            }
+
+            .aside-2 {
+                flex: 1 0 0%;
+                order: 4; /* Nằm bên phải ngoài cùng */
+            }
+
+            .footer-flex-2 {
+                flex: 1 1 100%;
+                order: 5;
+            }
+        }
